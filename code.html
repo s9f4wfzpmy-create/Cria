@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CRIA - Torne-se um Expositor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "primary": "#ffb59e",
+                        "on-tertiary": "#2f3131",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#24005b",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb59e",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "outline": "#ab897f",
+                        "on-tertiary-container": "#292b2c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error": "#690005",
+                        "outline-variant": "#5b4038",
+                        "surface-bright": "#3a3939",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#eaddff",
+                        "surface-tint": "#ffb59e",
+                        "on-primary-fixed-variant": "#852400",
+                        "on-primary": "#5e1700",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#e4beb3",
+                        "on-secondary-fixed-variant": "#5700c8",
+                        "on-primary-container": "#541400",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary": "#d1bcff",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "on-secondary-container": "#d7c4ff",
+                        "surface-container-highest": "#353534",
+                        "inverse-primary": "#ae3200",
+                        "secondary-container": "#6b05f0",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "primary-container": "#ff5a1f",
+                        "tertiary": "#c6c6c7",
+                        "on-secondary": "#3d0090",
+                        "tertiary-container": "#919292",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary-fixed": "#3a0b00",
+                        "primary-fixed": "#ffdbd0",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Bebas Neue"],
+                        "display-lg-mobile": ["Bebas Neue"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Bebas Neue"],
+                        "display-lg": ["Bebas Neue"],
+                        "body-sm": ["Inter"],
+                        "title-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["120px", { "lineHeight": "100px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "44px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["40px", { "lineHeight": "40px", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "display-lg": ["80px", { "lineHeight": "72px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            overflow-x: hidden;
+        }
+        /* Liquid Glass Utilities */
+        .liquid-glass {
+            background: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(107, 5, 240, 0.3);
+            border-color: rgba(255, 181, 158, 0.5);
+        }
+        .input-glass {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+            color: theme('colors.on-surface');
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: theme('colors.primary-container');
+            box-shadow: 0 10px 10px -10px rgba(255, 90, 31, 0.2);
+        }
+        .btn-primary {
+            background-color: theme('colors.primary-container');
+            color: theme('colors.surface');
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(107, 5, 240, 0.5);
+        }
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background-color: theme('colors.primary-container');
+            color: theme('colors.surface');
+            border-color: theme('colors.primary-container');
+        }
+        .step-indicator.completed {
+            background-color: theme('colors.secondary-container');
+            color: theme('colors.on-surface');
+            border-color: theme('colors.secondary-container');
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar component intentionally suppressed per "Semantic Shell" Mandate (Task-focused/Linear journey) -->
+<main class="flex-grow flex flex-col items-center justify-center w-full relative z-10 pt-section-gap pb-section-gap px-margin-mobile md:px-margin-desktop">
+<!-- Hero Section -->
+<header class="w-full max-w-container-max mx-auto text-center mb-section-gap relative">
+<!-- Decorative background glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary-container/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-unit">Torne-se um Expositor</h1>
+<p class="font-title-lg text-title-lg text-on-surface-variant max-w-2xl mx-auto">
+                Na CRIA, buscamos a excelência artesanal. Nosso processo de curadoria garante que apenas as obras mais excepcionais cheguem às nossas galerias digitais. Apresente sua arte ao mundo.
+            </p>
+</header>
+<!-- Stepper Form Container -->
+<div class="w-full max-w-3xl mx-auto liquid-glass rounded-xl p-gutter relative glow-hover transition-all duration-500">
+<!-- Stepper Header -->
+<div class="flex justify-between items-center mb-12 relative">
+<!-- Connecting Line -->
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-white/10 -z-10 -translate-y-1/2"></div>
+<!-- Steps -->
+<div class="flex flex-col items-center gap-2 z-10 bg-surface px-2">
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-label-caps text-label-caps step-indicator active" id="indicator-1">
+                        1
+                    </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Informações</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 bg-surface px-2">
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-label-caps text-label-caps step-indicator" id="indicator-2">
+                        2
+                    </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Portfólio</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 bg-surface px-2">
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-label-caps text-label-caps step-indicator" id="indicator-3">
+                        3
+                    </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Manifesto</span>
+</div>
+</div>
+<!-- Form Areas -->
+<form id="applicationForm" onsubmit="event.preventDefault();">
+<!-- Step 1: Informações Pessoais -->
+<div class="step-content block animate-fade-in" id="step-1">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Informações Pessoais</h2>
+<div class="space-y-6">
+<div class="relative">
+<input class="input-glass w-full py-2 font-body-md text-body-md" id="fullName" placeholder="Nome Completo / Nome Artístico" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative">
+<input class="input-glass w-full py-2 font-body-md text-body-md" id="email" placeholder="E-mail Profissional" required="" type="email"/>
+</div>
+<div class="relative">
+<input class="input-glass w-full py-2 font-body-md text-body-md" id="phone" placeholder="Telefone / WhatsApp" type="tel"/>
+</div>
+</div>
+<div class="relative">
+<input class="input-glass w-full py-2 font-body-md text-body-md" id="location" placeholder="Cidade e Estado/País" required="" type="text"/>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="btn-primary px-8 py-3 rounded-full font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2" onclick="nextStep(2)" type="button">
+                            Avançar <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Portfólio (Hidden by default) -->
+<div class="step-content hidden animate-fade-in" id="step-2">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Seu Portfólio</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Forneça links para seus trabalhos anteriores ou envie uma amostra representativa da sua técnica.</p>
+<div class="space-y-6">
+<div class="relative">
+<input class="input-glass w-full py-2 font-body-md text-body-md" id="portfolioUrl" placeholder="Link do Portfólio (Behance, Instagram, Site)" type="url"/>
+</div>
+<div class="border-2 border-dashed border-white/20 rounded-lg p-8 text-center hover:border-primary-container transition-colors duration-300 cursor-pointer flex flex-col items-center justify-center gap-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">cloud_upload</span>
+<div class="font-body-md text-body-md text-on-surface">
+<span class="text-primary-container font-semibold">Clique para fazer upload</span> ou arraste até 5 imagens (PDF, JPG, PNG).
+                            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tamanho máximo: 10MB por arquivo.</p>
+<input accept=".pdf,.jpg,.jpeg,.png" class="hidden" id="fileUpload" multiple="" type="file"/>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2" onclick="prevStep(1)" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span> Voltar
+                        </button>
+<button class="btn-primary px-8 py-3 rounded-full font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2" onclick="nextStep(3)" type="button">
+                            Avançar <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Manifesto Criativo (Hidden by default) -->
+<div class="step-content hidden animate-fade-in" id="step-3">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Manifesto Criativo</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Conte-nos sobre sua inspiração, técnica e o que torna sua arte única. Esta é a essência que apresentaremos aos nossos colecionadores.</p>
+<div class="space-y-6">
+<div class="relative">
+<textarea class="input-glass w-full py-2 font-body-md text-body-md resize-none" id="manifesto" placeholder="Qual é a história por trás da sua criação? (Min. 100 palavras)" required="" rows="6"></textarea>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2" onclick="prevStep(2)" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span> Voltar
+                        </button>
+<button class="btn-primary px-8 py-3 rounded-full font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2" type="submit">
+                            Enviar Aplicação <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+<!-- Curadoria Info Section -->
+<section class="w-full max-w-4xl mx-auto mt-section-gap text-center px-gutter">
+<h3 class="font-headline-md text-headline-md text-primary mb-6">O Rigor da Nossa Curadoria</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Originalidade</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Buscamos vozes autênticas e técnicas proprietárias que se destacam no cenário do artesanato contemporâneo.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-3xl">handyman</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Maestria Técnica</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Avaliamos o domínio dos materiais e a precisão da execução em cada peça submetida.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Narrativa</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Acreditamos que a história por trás da obra é tão importante quanto a obra em si.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer component intentionally suppressed per "Semantic Shell" Mandate (Task-focused/Linear journey) -->
+<script>
+        function showStep(stepNum) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Show target step
+            document.getElementById('step-' + stepNum).classList.remove('hidden');
+
+            // Update indicators
+            document.querySelectorAll('.step-indicator').forEach((el, index) => {
+                el.classList.remove('active', 'completed');
+                if (index + 1 < stepNum) {
+                    el.classList.add('completed');
+                    el.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span>';
+                } else if (index + 1 === stepNum) {
+                    el.classList.add('active');
+                    el.innerHTML = index + 1;
+                } else {
+                    el.innerHTML = index + 1;
+                }
+            });
+        }
+
+        function nextStep(stepNum) {
+            // Basic validation could be added here before moving forward
+            showStep(stepNum);
+        }
+
+        function prevStep(stepNum) {
+            showStep(stepNum);
+        }
+
+        // Handle file upload click
+        document.querySelector('.border-dashed').addEventListener('click', () => {
+            document.getElementById('fileUpload').click();
+        });
+    </script>
+</body></html>
